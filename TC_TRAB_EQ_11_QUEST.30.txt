@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main() {
+    char comando;
+    double operando1, operando2, resultado;
+
+    printf("Digite uma instrucao (ex: '+ 3 4', '* 5 6', '- 10 3', '/ 8 2', ou '0' para sair):\n");
+
+    while (1) {
+        // Lê o comando e os operandos
+        scanf(" %c", &comando);
+
+        
+        if (comando == '0') {
+            break;
+        }
+
+        scanf("%lf %lf", &operando1, &operando2);
+
+        // Executa o comando correspondente
+        switch (comando) {
+            case '+':
+                resultado = operando1 + operando2;
+                break;
+            case '-':
+                resultado = operando1 - operando2;
+                break;
+            case '*':
+                resultado = operando1 * operando2;
+                break;
+            case '/':
+                // Verifica se o divisor é diferente de zero
+                if (operando2 != 0) {
+                    resultado = operando1 / operando2;
+                } else {
+                    printf("Erro: divisao por zero!\n");
+                    continue;
+                }
+                break;
+            default:
+                printf("Comando invalido!\n");
+                continue;
+        }
+
+        
+        printf("Resultado: %.2lf\n", resultado);
+    }
+
+    printf("Programa encerrado.\n");
+
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAMANHO_VETOR 52
+
+// Função para verificar se um valor já foi gerado anteriormente
+int valorJaGerado(int vetor[], int valor, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        if (vetor[i] == valor) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main() {
+    int vetor[TAMANHO_VETOR];
+    int valor, contador = 0;
+
+    // Inicializa o vetor com valores "lixo"
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        vetor[i] = -1;
+    }
+
+    srand(time(NULL));  // Inicializa a semente do gerador de números aleatórios
+
+    while (contador < TAMANHO_VETOR) {
+        valor = rand() % TAMANHO_VETOR;
+
+        // Verifica se o valor já foi gerado antes
+        if (!valorJaGerado(vetor, valor, contador)) {
+            vetor[contador] = valor;
+            contador++;
+        }
+    }
+
+    // Imprime o vetor embaralhado
+    printf("Vetor embaralhado:\n");
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+
+    return 0;
+}

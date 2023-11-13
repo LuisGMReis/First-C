@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int numero;
+    int contador = 0;
+    double soma = 0.0;
+    double soma_quadrados = 0.0;
+    double produto_cubos = 1.0;
+
+    printf("Digite uma sequencia de numeros (digite 0 para encerrar):\n");
+
+    while (1) {
+        printf("Digite um numero: ");
+        scanf("%d", &numero);
+
+        // Verifica se o número é nulo para encerrar o programa
+        if (numero == 0) {
+            break;
+        }
+
+        // Atualiza os cálculos
+        soma += numero;
+        soma_quadrados += numero * numero;
+        produto_cubos *= numero * numero * numero;
+
+        // Imprime números maiores que 200
+        if (numero > 200) {
+            printf("Numero maior que 200: %d\n", numero);
+        }
+
+        contador++;
+    }
+
+    // Verifica se pelo menos um número foi lido antes de calcular a média
+    if (contador > 0) {
+        double media = soma / contador;
+
+        // Imprime os resultados
+        printf("\nResultados:\n");
+        printf("Media: %.2lf\n", media);
+        printf("Soma dos quadrados: %.2lf\n", soma_quadrados);
+        printf("Produto dos cubos: %.2lf\n", produto_cubos);
+    } else {
+        printf("Nenhum numero foi digitado.\n");
+    }
+
+    return 0;
+}

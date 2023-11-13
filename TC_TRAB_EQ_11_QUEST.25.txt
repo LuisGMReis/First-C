@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+unsigned long long calcularFatorial(int numero) {
+    if (numero == 0 || numero == 1) {
+        return 1;
+    } else {
+        return numero * calcularFatorial(numero - 1);
+    }
+}
+
+int main() {
+    int numero;
+
+    printf("Digite um numero para calcular o fatorial: ");
+    scanf("%d", &numero);
+
+    // Verifica se o número é não-negativo
+    if (numero < 0) {
+        printf("O fatorial não está definido para números negativos.\n");
+    } else {
+        // Chama a função para calcular o fatorial e imprime o resultado
+        unsigned long long resultado = calcularFatorial(numero);
+        printf("O fatorial de %d é %llu.\n", numero, resultado);
+    }
+
+    return 0;
+}

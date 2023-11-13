@@ -1,0 +1,40 @@
+b) Problema de eficiência na solução apresentada:
+A solução apresentada pode ser ineficiente para valores muito grandes, pois o algoritmo depende de gerar números aleatórios até encontrar um que ainda não foi gerado anteriormente. Isso pode causar um loop indefinido em situações extremas.
+c) Algoritmo de embaralhamento mais eficiente:
+Uma abordagem mais eficiente seria utilizar o algoritmo de Fisher-Yates (também conhecido como algoritmo de Knuth), que embaralha um array eficientemente. Aqui está uma implementação:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define TAMANHO_VETOR 52
+
+int main() {
+    int vetor[TAMANHO_VETOR];
+
+    // Inicializa o vetor com valores ordenados
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        vetor[i] = i;
+    }
+
+    srand(time(NULL));  // Inicializa a semente do gerador de números aleatórios
+
+    // Embaralha o vetor usando o algoritmo de Fisher-Yates
+    for (int i = TAMANHO_VETOR - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+
+        // Troca vetor[i] e vetor[j]
+        int temp = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = temp;
+    }
+
+    // Imprime o vetor embaralhado
+    printf("Vetor embaralhado:\n");
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
